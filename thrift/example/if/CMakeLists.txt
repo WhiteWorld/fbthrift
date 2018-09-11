@@ -1,5 +1,9 @@
 set(EXAMPLE_IF_HOME ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(THRIFT1 /fbthrift/build/bin/thrift1)
+set(THRIFT_TEMPLATES /usr/include/thrift/templates)
+set(THRIFTCPP2 /usr/lib/libthriftcpp2.a)
+
 # Example to test linking
 thrift_library(
   "chatroom" #file_name
