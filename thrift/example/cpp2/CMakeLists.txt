@@ -15,10 +15,13 @@ find_library (Thrift-core thrift-core /usr/lib)
 find_library (Thriftprotocol thriftprotocol /usr/lib)
 find_library (Thriftfrozen2 thriftfrozen2 /usr/lib)
 find_library (Krb5 krb5 /usr/lib)
+find_library (Transport transport /usr/lib)
+find_library (Server server /usr/lib)
+find_library (Protocol protocol /usr/lib)
+find_library (Security security /usr/lib)
+find_library (Concurrency concurrency /usr/lib)
 
-set(LIBS ${Folly} ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag} ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2} ${Wangle} ${Double-conversion} ${Krb5})
-
-
+set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Folly} ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Concurrency})
 
 add_executable(
   example_server
