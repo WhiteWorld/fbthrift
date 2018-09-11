@@ -20,8 +20,9 @@ find_library (Server server /usr/lib)
 find_library (Protocol protocol /usr/lib)
 find_library (Security security /usr/lib)
 find_library (Concurrency concurrency /usr/lib)
+find_library (Event event /usr/lib)
 
-set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Folly}  ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Concurrency})
+set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Folly}  ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Concurrency} ${Event})
 
 add_executable(
   example_server
