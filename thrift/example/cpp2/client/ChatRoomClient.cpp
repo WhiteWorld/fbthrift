@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
   // Prepare thrift request
   example::chatroom::SendMessageRequest sendRequest;
   sendRequest.message = "This is an example!";
-  sendRequest.sender = getenv("USER");
+  sendRequest.sender = "liu";
 
   // Prepare thrift response
   example::chatroom::GetMessagesRequest getRequest;
