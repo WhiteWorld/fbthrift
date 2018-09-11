@@ -65,12 +65,6 @@ static std::unique_ptr<AsyncClient> newClient(
   if (transport == "header") {
     return newHeaderClient<AsyncClient>(evb, addr);
   }
-  if (transport == "rsocket") {
-    return newRSocketClient<AsyncClient>(evb, addr, encrypted);
-  }
-  if (transport == "http2") {
-    return newHTTP2Client<AsyncClient>(evb, addr, encrypted);
-  }
   return nullptr;
 }
 
