@@ -21,7 +21,7 @@ find_library (Protocol protocol /usr/lib)
 find_library (Security security /usr/lib)
 find_library (Concurrency concurrency /usr/lib)
 
-set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Folly} ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Concurrency})
+set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Folly}  ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Concurrency})
 
 add_executable(
   example_server
