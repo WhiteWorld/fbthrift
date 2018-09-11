@@ -59,6 +59,7 @@ add_executable(
   chatroom_client
 
   client/ChatRoomClient.cpp
+  client/Util.cpp
 )
 target_link_libraries(
   chatroom_client
