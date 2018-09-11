@@ -20,7 +20,7 @@
 #include <thrift/example/cpp2/server/EchoService.h>
 #include <thrift/example/if/gen-cpp2/Echo.h>
 #include <thrift/lib/cpp2/transport/core/testutil/ServerConfigsMock.h>
-#include <thrift/perf/cpp2/util/Util.h>
+#include <thrift/example/cpp2/client/Util.h>
 
 DEFINE_string(host, "::1", "EchoServer host");
 DEFINE_int32(port, 7778, "EchoServer port");
@@ -48,13 +48,6 @@ int main(int argc, char* argv[]) {
     client = newHeaderClient<EchoAsyncClient>(&evb, addr);
   }
 
-  // For inmemory transport
-  auto handler = std::make_shared<EchoHandler>();
-  ServerConfigsMock serverConfigs;
-  if (FLAGS_transport == "inmemory") {
-    client =
-        newInMemoryClient<EchoAsyncClient, EchoHandler>(handler, serverConfigs);
-  }
 
   // Prepare thrift request
   std::string message = "Ping this back";
