@@ -27,6 +27,7 @@
 #include <thrift/lib/cpp2/transport/core/testutil/ServerConfigsMock.h>
 
 using apache::thrift::ClientConnectionIf;
+using apache::thrift::HeaderClientChannel;
 using apache::thrift::ThriftClient;
 using apache::thrift::ThriftServerAsyncProcessorFactory;
 using apache::thrift::async::TAsyncSSLSocket;
