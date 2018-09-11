@@ -64,6 +64,7 @@ target_link_libraries(
   chatroom_client
 
   chatroom-cpp2
+  ${LIBS}
 )
 install(
   TARGETS chatroom_client
