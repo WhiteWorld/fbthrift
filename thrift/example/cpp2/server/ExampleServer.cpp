@@ -22,29 +22,15 @@
 #include <thrift/example/cpp2/server/EchoService.h>
 #include <thrift/lib/cpp2/server/ThriftServer.h>
 #include <thrift/lib/cpp2/transport/core/ThriftProcessor.h>
-#include <thrift/lib/cpp2/transport/http2/common/HTTP2RoutingHandler.h>
-#include <thrift/lib/cpp2/transport/rsocket/server/RSRoutingHandler.h>
 
 DEFINE_int32(chatroom_port, 7777, "Chatroom Server port");
 DEFINE_int32(echo_port, 7778, "Echo Server port");
 
-using apache::thrift::HTTP2RoutingHandler;
 using apache::thrift::ThriftServer;
 using apache::thrift::ThriftServerAsyncProcessorFactory;
 using example::chatroom::ChatRoomServiceHandler;
 using example::chatroom::EchoHandler;
-using proxygen::HTTPServerOptions;
-using proxygen::RequestHandlerChain;
 
-std::unique_ptr<HTTP2RoutingHandler> createHTTP2RoutingHandler(
-    std::shared_ptr<ThriftServer> server) {
-  auto h2_options = std::make_unique<HTTPServerOptions>();
-  h2_options->threads = static_cast<size_t>(server->getNumIOWorkerThreads());
-  h2_options->idleTimeout = server->getIdleTimeout();
-  h2_options->shutdownOn = {SIGINT, SIGTERM};
-  return std::make_unique<HTTP2RoutingHandler>(
-      std::move(h2_options), server->getThriftProcessor(), *server);
-}
 
 template <typename ServiceHandler>
 std::shared_ptr<ThriftServer> newServer(int32_t port) {
