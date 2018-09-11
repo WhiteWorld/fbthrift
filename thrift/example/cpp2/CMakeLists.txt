@@ -29,7 +29,7 @@ find_library (Concurrency concurrency /usr/lib)
 find_library (Async async /usr/lib)
 find_library (Event event /usr/lib)
 
-set(LIBS ${Thriftcpp2} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread}  ${Gflag}  ${Thrift-core} ${Thriftprotocol}  ${Thrift}   ${Wangle} ${Folly} ${Double-conversion} ${Krb5} ${Protocol} ${Transport} ${Server} ${Concurrency} ${Security} ${Gssapi_krb5} ${Follyinit}  ${Glog} ${Async} ${Event})
+set(LIBS ${Thriftcpp2} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread}  ${Gflag}  ${Thrift-core} ${Thriftprotocol}  ${Thrift}   ${Wangle} ${Folly} ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Concurrency} ${Security} ${Gssapi_krb5} ${Follyinit}  ${Glog} ${Protocol}  ${Async} ${Event})
 
 
 
