@@ -48,14 +48,6 @@ int main(int argc, char* argv[]) {
     client = newHeaderClient<ChatRoomServiceAsyncClient>(&evb, addr);
   }
 
-  // For inmemory transport
-  auto handler = std::make_shared<ChatRoomServiceHandler>();
-  ServerConfigsMock serverConfigs;
-  if (FLAGS_transport == "inmemory") {
-    client =
-        newInMemoryClient<ChatRoomServiceAsyncClient, ChatRoomServiceHandler>(
-            handler, serverConfigs);
-  }
 
   // Prepare thrift request
   example::chatroom::SendMessageRequest sendRequest;

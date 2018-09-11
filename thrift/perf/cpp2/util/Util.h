@@ -25,17 +25,8 @@
 #include <thrift/lib/cpp2/server/BaseThriftServer.h>
 #include <thrift/lib/cpp2/transport/core/ThriftClient.h>
 #include <thrift/lib/cpp2/transport/core/testutil/ServerConfigsMock.h>
-#include <thrift/lib/cpp2/transport/http2/client/H2ClientConnection.h>
-#include <thrift/lib/cpp2/transport/inmemory/InMemoryConnection.h>
-#include <thrift/lib/cpp2/transport/rsocket/client/RSClientConnection.h>
-#include <thrift/lib/cpp2/transport/rsocket/client/StreamThriftClient.h>
 
 using apache::thrift::ClientConnectionIf;
-using apache::thrift::H2ClientConnection;
-using apache::thrift::HeaderClientChannel;
-using apache::thrift::InMemoryConnection;
-using apache::thrift::RSClientConnection;
-using apache::thrift::StreamThriftClient;
 using apache::thrift::ThriftClient;
 using apache::thrift::ThriftServerAsyncProcessorFactory;
 using apache::thrift::async::TAsyncSSLSocket;
@@ -63,46 +54,6 @@ static std::unique_ptr<AsyncClient> newHeaderClient(
   auto chan = HeaderClientChannel::newChannel(std::move(sock));
   chan->setProtocolId(apache::thrift::protocol::T_COMPACT_PROTOCOL);
   return std::make_unique<AsyncClient>(std::move(chan));
-}
-
-template <typename AsyncClient>
-static std::unique_ptr<AsyncClient> newHTTP2Client(
-    folly::EventBase* evb,
-    folly::SocketAddress const& addr,
-    bool encrypted) {
-  auto sock = apache::thrift::perf::getSocket(evb, addr, encrypted, {"h2"});
-  std::shared_ptr<ClientConnectionIf> conn =
-      H2ClientConnection::newHTTP2Connection(std::move(sock));
-  auto client = ThriftClient::Ptr(new ThriftClient(conn, evb));
-  client->setProtocolId(apache::thrift::protocol::T_COMPACT_PROTOCOL);
-  client->setTimeout(500);
-  return std::make_unique<AsyncClient>(std::move(client));
-}
-
-template <typename AsyncClient>
-static std::unique_ptr<AsyncClient> newRSocketClient(
-    folly::EventBase* evb,
-    folly::SocketAddress const& addr,
-    bool encrypted) {
-  auto sock = apache::thrift::perf::getSocket(evb, addr, encrypted, {"rs"});
-  std::shared_ptr<ClientConnectionIf> conn =
-      std::make_shared<RSClientConnection>(std::move(sock), encrypted);
-  auto client = StreamThriftClient::Ptr(new StreamThriftClient(conn, evb));
-  client->setProtocolId(apache::thrift::protocol::T_COMPACT_PROTOCOL);
-  return std::make_unique<AsyncClient>(std::move(client));
-}
-
-template <typename AsyncClient, typename ServiceHandler>
-static std::unique_ptr<AsyncClient> newInMemoryClient(
-    std::shared_ptr<ServiceHandler> handler,
-    ServerConfigsMock& serverConfigs) {
-  auto pFac =
-      std::make_shared<ThriftServerAsyncProcessorFactory<ServiceHandler>>(
-          handler);
-  auto conn = std::make_shared<InMemoryConnection>(pFac, serverConfigs);
-  auto client = ThriftClient::Ptr(new ThriftClient(conn));
-  client->setProtocolId(apache::thrift::protocol::T_COMPACT_PROTOCOL);
-  return std::make_unique<AsyncClient>(std::move(client));
 }
 
 template <typename AsyncClient>
