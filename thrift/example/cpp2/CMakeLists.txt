@@ -83,6 +83,7 @@ target_link_libraries(
   echo_client
 
   chatroom-cpp2
+  ${LIBS}
 )
 install(
   TARGETS echo_client
