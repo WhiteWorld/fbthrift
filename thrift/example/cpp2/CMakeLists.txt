@@ -48,6 +48,7 @@ target_link_libraries(
   chatroom-cpp2
   ${GFLAGS_LIBRARIES}
   ${GLOG_LIBRARIES}
+  ${LIBS}
 )
 install(
   TARGETS example_server
