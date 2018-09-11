@@ -20,7 +20,7 @@
 #include <thrift/example/cpp2/server/ChatRoomService.h>
 #include <thrift/example/if/gen-cpp2/ChatRoomService.h>
 #include <thrift/lib/cpp2/transport/core/testutil/ServerConfigsMock.h>
-#include <thrift/perf/cpp2/util/Util.h>
+#include <thrift/example/cpp2/client/Util.h>
 
 DEFINE_string(host, "::1", "ChatroomServer host");
 DEFINE_int32(port, 7777, "ChatRoomServer port");
