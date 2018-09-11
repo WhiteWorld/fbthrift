@@ -78,6 +78,7 @@ add_executable(
   echo_client
 
   client/EchoClient.cpp
+  client/Util.cpp
 )
 target_link_libraries(
   echo_client
