@@ -5,6 +5,5 @@ include(ThriftLibrary.cmake)
 
 include_directories(/fbthrift/)
 include_directories(/usr/include)
-link_directories(/user/lib /user/local/lib)
 add_subdirectory(if)
 add_subdirectory(cpp2)

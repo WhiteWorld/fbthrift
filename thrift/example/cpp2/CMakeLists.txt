@@ -24,7 +24,7 @@ find_library (Concurrency concurrency /usr/lib)
 find_library (Event event /usr/lib)
 find_library (Async async /usr/lib)
 
-set(LIBS ${Thriftcpp2}  ${Thrift} ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Folly}  ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Async} ${Concurrency} ${Event})
+set(LIBS ${Thriftcpp2}  ${Thrift-core} ${Thriftprotocol} ${Thriftfrozen2}  ${Boost} ${SSL} ${Crypto} ${Pthread} ${Glog} ${Gflag}  ${Wangle} ${Folly}  ${Double-conversion} ${Krb5} ${Transport} ${Server} ${Protocol} ${Security} ${Async} ${Concurrency} ${Event} ${Thrift} )
 
 add_executable(
   example_server
