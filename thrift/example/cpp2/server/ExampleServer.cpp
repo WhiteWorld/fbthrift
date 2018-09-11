@@ -17,7 +17,6 @@
 #include <folly/init/Init.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
-#include <proxygen/httpserver/HTTPServerOptions.h>
 #include <thrift/example/cpp2/server/ChatRoomService.h>
 #include <thrift/example/cpp2/server/EchoService.h>
 #include <thrift/lib/cpp2/server/ThriftServer.h>
@@ -41,9 +40,6 @@ std::shared_ptr<ThriftServer> newServer(int32_t port) {
   auto server = std::make_shared<ThriftServer>();
   server->setPort(port);
   server->setProcessorFactory(proc_factory);
-  server->addRoutingHandler(std::make_unique<apache::thrift::RSRoutingHandler>(
-      server->getThriftProcessor(), *server));
-  server->addRoutingHandler(createHTTP2RoutingHandler(server));
   return server;
 }
 
